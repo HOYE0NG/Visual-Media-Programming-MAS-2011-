@@ -23,11 +23,11 @@ board = [" "] * 10
 
 def printMessage(letter):
     if letter == "player":
-        draw_text(screen, "you win", 50, 300, 300)       
+        draw_text(screen, "you win", 50, 400, 400)       
     elif letter == "computer":
-        draw_text(screen, "you lose, computer win", 50, 300, 300)
+        draw_text(screen, "you lose, computer win", 50, 400, 400)
     else:
-        draw_text(screen, "the game is a tie!", 50, 300, 300)
+        draw_text(screen, "the game is a tie!", 50, 400, 400)
 
 def clickBoard(x, y):
     if 0<x<100 and 0<y<100:
