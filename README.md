@@ -8,3 +8,8 @@
 
 # tic-tac-toe_pygame.py
 파이게임을 이용한 틱택토 게임 구현.
+
+# RotationProject
+1) solar system simulation
+2) clock simulaiton
+3) wind mill simulation
