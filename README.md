@@ -1,4 +1,4 @@
-서강대학교 2022 동계 계절학기 Visual Medai Programming (Python)
+서강대학교 2022 동계 계절학기 Visual Media Programming (Python)
 
 # hangman_pygame.py
 파이게임을 이용한 행맨 게임 구현.
@@ -10,6 +10,8 @@
 파이게임을 이용한 틱택토 게임 구현.
 
 # RotationProject
+파이게임을 이용한 태양계 시뮬레이션, 시계 시뮬레이션, 풍차 시물레이션 구현
+
 1) solar system simulation
 2) clock simulaiton
 3) wind mill simulation
