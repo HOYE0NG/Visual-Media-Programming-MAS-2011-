@@ -46,9 +46,11 @@ wizardData = [wizardSize,3,(117,100)]
 # font       
 myFont = pygame.font.Font(None, 100)
 myText = myFont.render("Game Over", True, BLACK) 
+f1Text = myFont.render("left player win", True, BLUE)
+f2Text = myFont.render("right player win", True, BLUE)
 # --
 fighter1 = Fighter(100, 650, 'left', swordsmanData, swordsmanImgPath, swordsmanSteps)
-fighter2 = Fighter(400, 650, 'right', wizardData, wizardImgPath, wizardSteps)
+fighter2 = Fighter(700, 650, 'right', wizardData, wizardImgPath, wizardSteps)
 
 
 
@@ -68,6 +70,8 @@ class Window:
         self.f1HpRectReal = pygame.Rect(self.healthBarLeft.x+3, self.healthBarLeft.y+3, WINDOW_WIDTH/2-100-6, 50-6)
         self.f2HpRectReal = pygame.Rect(self.healthBarRight.x+3, self.healthBarRight.y+3, WINDOW_WIDTH/2-100-6, 50-6)
         self.gameIsDone = False
+        self.f1HpLose = False
+        self.f2HpLose = False
     
     def update(self, screen, f1Hp, f2Hp):
         self.f1HpRectReal.width = self.f1HpRect.width/100 * f1Hp
@@ -76,6 +80,10 @@ class Window:
         self.f2HpRectReal.left = self.healthBarCenter.right + 3
         if f1Hp <= 0 or f2Hp <= 0:
             self.gameIsDone = True
+            if f1Hp <= 0:
+                self.f1HpLose = True
+            else :
+                self.f2Hplose = True
     
     def draw(self, screen):
         screen.blit(backgroundImg, (0, 0))
@@ -86,6 +94,12 @@ class Window:
         pygame.draw.rect(screen, RED, self.f2HpRectReal)   
         if self.gameIsDone:
             screen.blit(myText, [100,400])
+            if self.f1HpLose:
+                screen.blit(f2Text, [100,500])
+            elif self.f2Hplose:    
+                screen.blit(f1Text, [100,500])
+            
+            
         
 # --
 window = Window(fighter1.health, fighter2.health)

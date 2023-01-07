@@ -51,7 +51,7 @@ class Fighter():
         self.isAttacking1 = False
         self.isAttacking2 = False
         self.Attacked = False
-        
+        self.dead = False
     def loadImages(self, imgPath, steps): # steps : dict
         #extract images from image
         animationList = []
@@ -113,8 +113,10 @@ class Fighter():
         #health
         
     def animationUpdate(self):
-        animationCD = 30
-        if self.Attacked :
+        animationCD = 70
+        if self.dead :
+           self.updateAction(2) 
+        elif self.Attacked :
             self.updateAction(4) # hit
         elif self.isRunning :
             self.updateAction(7) # run
@@ -130,7 +132,15 @@ class Fighter():
             
         self.image = self.animationList[self.action][self.frameIndex]
         #check if time has passed since the last update
-        if self.action in [0, 1, 4] :
+        if self.action == 2 :
+            animationCD = 400
+            if pygame.time.get_ticks() - self.updateTime > animationCD:
+                self.frameIndex += 1
+                self.updateTime = pygame.time.get_ticks()
+                if self.frameIndex >= len(self.animationList[self.action]):
+                   self.action = 2
+                   self.frameIndex = 5
+        elif self.action in [0, 1, 4] :
             if pygame.time.get_ticks() - self.updateTime > animationCD:
                 self.frameIndex += 1
                 self.updateTime = pygame.time.get_ticks()
@@ -149,13 +159,15 @@ class Fighter():
                     self.frameIndex = 0
             
     def attack(self, screen, enemy):
-        self.attackRect = pygame.Rect(self.rect.centerx, self.rect.y, 2*self.rect.width, self.rect.height)
+        self.attackRect = pygame.Rect(self.rect.x, self.rect.y-20, self.rect.width+160, 180)
         if self.attackRect.colliderect(enemy.rect): # dectect collision
             enemy.beAttacked(screen)
     
     def beAttacked(self, screen):
         self.health -= 1
         self.Attacked = True
+        if self.health <= 0:
+            self.dead = True
            
     def updateAction(self, newAction):
         #check if the newaction is diffrenet to the previous action
@@ -166,10 +178,11 @@ class Fighter():
             self.updateTime = pygame.time.get_ticks()
                 
     def draw(self, screen):
-        pygame.draw.rect(screen, BLUE, self.rect)
+        # pygame.draw.rect(screen, BLUE, self.rect)
         if self.player == 'right':
             img = pygame.transform.flip(self.image, True, False)
         else:
             img = self.image
         screen.blit(img, (self.rect.x-self.adjusting[0], self.rect.y-self.adjusting[1]))
-        pygame.draw.rect(screen, RED, (self.rect.x-100, self.rect.y-100, self.image.get_rect().width, self.image.get_rect().height) ,4)
+        # pygame.draw.rect(screen, RED, (self.rect.x-100, self.rect.y-100, self.image.get_rect().width, self.image.get_rect().height) ,4)
+        # pygame.draw.rect(screen, PINK, (self.rect.x, self.rect.y-20, self.rect.width+160, 180), 5)
