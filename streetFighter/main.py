@@ -30,15 +30,27 @@ current_path = os.path.dirname(__file__)
 assets_path = os.path.join(current_path, 'assets')
 backgroundImg = pygame.image.load(os.path.join(assets_path, 'background1.png'))
 backgroundImg = pygame.transform.scale(backgroundImg, (WINDOW_WIDTH, WINDOW_HEIGHT))
-# backgroundList = []
-# backgroundList.append(backgroundImg)
-       
+
+swordsmanImgPath = os.path.join(assets_path, 'swordsman')
+wizardImgPath = os.path.join(assets_path, 'wizard')
+
+swordsmanSteps = {"Attack1":6, 'Attack2':6, 'Death':6, 'Fall':2, 'Hit':4, 'Idle':8, 'Jump':2, 'Run':8}
+wizardSteps = {"Attack1":8, 'Attack2':8, 'Death':7, 'Fall':2, 'Hit':4, 'Idle':6, 'Jump':2, 'Run':8}
+
+swordsmanSize = (200, 200)
+wizardSize = (231, 190)
+
+swordsmanData = [swordsmanSize, 4.2,(157,132)]
+wizardData = [wizardSize,3,(117,100)]
+
 # font       
 myFont = pygame.font.Font(None, 100)
 myText = myFont.render("Game Over", True, BLACK) 
 # --
-fighter1 = Fighter(100, 650, 'left')
-fighter2 = Fighter(400, 650, 'right')
+fighter1 = Fighter(100, 650, 'left', swordsmanData, swordsmanImgPath, swordsmanSteps)
+fighter2 = Fighter(400, 650, 'right', wizardData, wizardImgPath, wizardSteps)
+
+
 
 # --
 class Window:
@@ -86,6 +98,7 @@ while not done:
 
     # 게임 로직 구간
     fighter1.update(screen, fighter2)
+    fighter2.update(screen, fighter1)
     window.update(screen, fighter1.health, fighter2.health)
 
     # 윈도우 화면 채우기
@@ -94,7 +107,9 @@ while not done:
     # 화면 그리기 구간
     window.draw(screen)
     fighter1.draw(screen)
+    fighter1.animationUpdate()
     fighter2.draw(screen)
+    fighter2.animationUpdate()
 
     # 화면 업데이트 / 프레임
     pygame.display.flip()
