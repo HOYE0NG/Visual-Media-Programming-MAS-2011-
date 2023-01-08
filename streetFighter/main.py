@@ -48,6 +48,7 @@ myFont = pygame.font.Font(None, 100)
 myText = myFont.render("Game Over", True, BLACK) 
 f1Text = myFont.render("left player win", True, BLUE)
 f2Text = myFont.render("right player win", True, BLUE)
+
 # --
 fighter1 = Fighter(100, 650, 'left', swordsmanData, swordsmanImgPath, swordsmanSteps)
 fighter2 = Fighter(700, 650, 'right', wizardData, wizardImgPath, wizardSteps)
@@ -99,9 +100,6 @@ class Window:
             elif self.f2Hplose:    
                 screen.blit(f1Text, [100,500])
             
-            
-        
-# --
 window = Window(fighter1.health, fighter2.health)
 
 # 게임 반복 구간

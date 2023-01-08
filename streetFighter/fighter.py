@@ -1,5 +1,6 @@
 import pygame
 import os
+
 # 게임 윈도우 크기
 WINDOW_WIDTH = 1200
 WINDOW_HEIGHT = 800
@@ -52,7 +53,8 @@ class Fighter():
         self.isAttacking2 = False
         self.Attacked = False
         self.dead = False
-    def loadImages(self, imgPath, steps): # steps : dict
+    
+    def loadImages(self, imgPath, steps): 
         #extract images from image
         animationList = []
         for animation in steps:
@@ -65,7 +67,7 @@ class Fighter():
             animationList.append(tempImgList)
         return animationList    
         
-    def update(self, screen, enemy): # fighter move with keyboard
+    def update(self, screen, enemy): 
         dx = 0
         dy = 0
         gravity = 2
@@ -109,8 +111,6 @@ class Fighter():
         
         self.rect.x += dx
         self.rect.y += dy  
-
-        #health
         
     def animationUpdate(self):
         animationCD = 70
