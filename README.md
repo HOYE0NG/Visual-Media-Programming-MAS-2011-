@@ -2,7 +2,7 @@
 
 
 
-# SteetFighter
+# SteetFighter ( FINAL PROJECT )
 파이게임을 이용한 격투 게임 구현. 
 PDF --> [FinalProject_20211531.pdf](https://github.com/HOYE0NG/VisualMediaProgramming-MAS2011/files/10368352/FinalProject_20211531.pdf)
 
