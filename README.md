@@ -34,3 +34,7 @@ PDF --> [FinalProject_20211531.pdf](https://github.com/HOYE0NG/VisualMediaProgra
 
 [RobotArms.pdf](https://github.com/HOYE0NG/VisualMediaProgramming-MAS2011/files/10344773/robot_report_20211531.pdf)
 
+# hoppangman
+파이게임을 이용한 호빵맨 shump 게임 구현
+
+[hoppangmanGame.pdf](https://github.com/HOYE0NG/VisualMediaProgramming-MAS2011/files/10368375/hoppangmanGame.pdf)
